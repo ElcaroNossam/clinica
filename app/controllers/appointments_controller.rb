@@ -13,6 +13,8 @@ class AppointmentsController < ApplicationController
     def create
       @appointment = Appointment.new(appointment_params)
       @appointment.user_id = current_user.id
+      @appointment.doctor_id = session[:appointment_doctor_id]
+      
       if @appointment.save 
         flash[:notice] = "Запись создана, но вам нужно выбрать имя вашего доктора!"
        render 'edit'
@@ -44,6 +46,10 @@ class AppointmentsController < ApplicationController
   
     def show
       @doctors = @appointment.doctors.paginate(page: params[:page], per_page: 5)
+     if @appointment.stock_id == nil
+      else
+        @stock = Stock.find(@appointment.stock_id)
+     end
     end
     
     def destroy

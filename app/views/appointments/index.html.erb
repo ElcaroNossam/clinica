@@ -1,6 +1,6 @@
 <h1 class="text-center mt-4">Записи</h1>
 <div class="container">
-<div class="flickr_pagination row justify-content-center">
+<div class="flickr_pagination row justify-content-md-center">
   <%= will_paginate @appointments, :container => true %>
 </div>
   <% @appointments.each do |appointment| %>

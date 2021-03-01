@@ -13,11 +13,10 @@
       <div class="col-4 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
           <div class="card-body">
-          <strong> Patient: </strong> <%= User.find(@stock.user_id).name %>
-          <strong> Doctor: </strong> <%= @stock.namedoctor %>
-          <strong> Recomendation: </strong>   <%= @stock.content %>
-          <%= cl_image_tag("#{@stock.picture}", :width => 300, :height => 200, :crop => :fill, :cloud_name => "elcaronossam") %>
-      
+           <strong> Patient: </strong> <%= User.find(@stock.user_id).name %>
+           <strong> Doctor: </strong> <%= @stock.namedoctor %>
+           <strong> Recomendation: </strong>   <%= @stock.content %>
+           <%= cl_image_tag("#{@stock.picture}", :width => 300, :height => 200, :crop => :fill, :cloud_name => "elcaronossam") %>
           </div>
         </div>
       </div>

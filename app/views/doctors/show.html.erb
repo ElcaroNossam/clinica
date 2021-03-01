@@ -36,7 +36,10 @@
       </span></td> 
   <% elsif  user_signed_in? && current_user %>
     <td> <span class="btn btn-success">
-    <%= link_to "Вы можете записатся на любое время!",  new_appointment_path(user_id: current_user.id), class: "text-dark"  %>
+    
+    <% session[:appointment_doctor_id] = params[:id] %>
+    <%= link_to "Вы можете записатся на любое время!",  new_appointment_path, class: "text-dark"  %>
+    
       </span></td> 
   <% end %>
 </div>
@@ -61,3 +64,4 @@
         </div>
     <% end %>
  <% end %>
+

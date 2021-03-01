@@ -26,7 +26,7 @@
         <% end %>
 
           <% if  user_signed_in? && current_user.has_role?(:admin) %>
-          <li class="nav-item dropdown">
+           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Patients
               </a>
@@ -34,7 +34,7 @@
               <%= link_to "Appointments", appointments_path, class: "dropdown-item" %>           
                 <%= link_to "Create new appointment", new_appointment_path, class: "dropdown-item" %>
               </div>       
-          </li> 
+           </li> 
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,18 +47,28 @@
             </div>
           </li> 
          <% end %>
-       
+        <% if  current_user && current_user.has_role?(:user) %>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Doctors
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "All Doctors", doctors_path, class: "dropdown-item" %>
+                <%= link_to "Appointments", appointments_path, class: "dropdown-item" %>
+            </div>
+         </li> 
+        <% end %>
+
          <% if  current_user || current_user && current_user.has_role?(:admin) %>
          <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <%= "(Admin)" if current_user.has_role?(:admin)  %> Profile [<%= current_user.name%>]
+              <%= "(Admin)" if current_user.has_role?(:admin)  %> Profile [<%= current_user.name%>]
            </a>
            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
              <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
              <%= link_to "Edit your profile", edit_user_registration_path(current_user), class: "dropdown-item" %>
              <%= button_to "Delete profile",  user_registration_path, class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %> 
-           
-             </div>
+           </div>
          </li>
         <% end %>
 
