@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "Вы вошли в кабинет как #{doctor.name}."
         redirect_to doctor
       else
-        flash.now[:alert] = "Аккаунт доктора неможет быть создан!"
+        flash.now[:alert] = "Проверьте номер и пароль!"
         render 'new'
       end
     end

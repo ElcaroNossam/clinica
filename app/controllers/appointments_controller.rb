@@ -37,9 +37,13 @@ class AppointmentsController < ApplicationController
     end
   
     def show
+      
       @doctors = @appointment.doctors.paginate(page: params[:page], per_page: 5)
+     
      if @appointment.stock_id == nil
-      else
+     
+    else
+      
         @stock = Stock.find(@appointment.stock_id)
      end
     end

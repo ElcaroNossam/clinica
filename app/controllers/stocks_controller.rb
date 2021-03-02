@@ -22,7 +22,7 @@ class StocksController < ApplicationController
             end
         end
     end
-    
+
       def new        
         @stock = Stock.new(stock_params)
       end
@@ -46,8 +46,10 @@ class StocksController < ApplicationController
     
       def update  
         if @stock.update(stock_params) 
-                flash[:notice] = "Запись сохранена!"  
-                @appointment = Appointment.find(@stock.appointment_id)
+          @appointment = Appointment.find(@stock.appointment_id)           
+          @appointment.stock_id = @stock.id
+          @appointment.save
+                flash[:notice] = "Запись сохранена!"                 
                 redirect_to @appointment
         else
             render 'edit' 
@@ -62,9 +64,10 @@ class StocksController < ApplicationController
       end
       
       def destroy
+        @appointment = Appointment.find(@stock.appointment_id)
         @stock.destroy        
         flash[:notice] = "Запись удалена!"
-        redirect_to stocks_path
+        redirect_to @appointment
       end
   
       private

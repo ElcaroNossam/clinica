@@ -1,8 +1,9 @@
 class Stock < ApplicationRecord
     attr_accessor :picture
     
-    belongs_to :doctor
-     
+    
+    belongs_to :appointment
+
     mount_uploader :picture, StockUploader
 
     def self.check_db(app)
