@@ -7,14 +7,13 @@
         <%= f.text_field :content, class: "form-control shadow rounded", placeholder: "Enter your recomendation" %>
       </div>
     </div>
-
+    
+    <%= f.file_field :picture, class: "mt-2"%>
+    
     <div class="form-group row justify-content-center">
       <%= f.submit class: "btn btn-outline-light btn-lg" %>
-   
-   
-    <%= f.file_field :picture, class: "mt-2"%>
-    <div class="form-group row justify-content-center">
-       <%= f.submit class: "btn btn-outline-light btn-lg" %>
     </div>
+   
+  
   </span>
 <% end %>

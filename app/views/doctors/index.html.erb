@@ -16,8 +16,7 @@
             </h5>
             <div class="row justify-content-center" >
               <%= render doctor.categories %>
-           </div>
-           
+           </div>          
             <% if user_signed_in? && current_user.has_role?(:admin) %>
                     <%= link_to "Edit profile", edit_doctor_path(doctor), class: "btn btn-outline-info mt-2" %>
                     <%= link_to "Delete user", doctor_path(doctor), class: "btn btn-outline-danger mt-2", method: :delete,
@@ -32,6 +31,6 @@
     </div>
   <% end %>
   <div class="flickr_pagination row justify-content-center">
-  <%= will_paginate @doctors, :container => true %>
-</div>
+   <%= will_paginate @doctors, :container => true %>
+  </div>
 </div>

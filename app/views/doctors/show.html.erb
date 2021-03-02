@@ -32,14 +32,12 @@
 <div class="row justify-content-center mt-5 mb-5" >
   <% if  user_signed_in? && current_user && @doctor.recomend?.count > 2 %> 
     <td> <span class="btn btn-danger text-warning">
-    Свободных запесей нет! 
+       Свободных запесей нет! 
       </span></td> 
   <% elsif  user_signed_in? && current_user %>
-    <td> <span class="btn btn-success">
-    
-    <% session[:appointment_doctor_id] = params[:id] %>
-    <%= link_to "Вы можете записатся на любое время!",  new_appointment_path, class: "text-dark"  %>
-    
+    <td> <span class="btn btn-success">   
+        <% session[:appointment_doctor_id] = params[:id] %>
+        <%= link_to "Вы можете записатся на любое время!",  new_appointment_path, class: "text-dark"  %>   
       </span></td> 
   <% end %>
 </div>
@@ -47,13 +45,13 @@
 <div class="row justify-content-center mt-5 mb-5" >
   <% if  doctor_signed_in? && current_doctor && @doctor.recomend?.count > 2 %> 
     <td> <span class="btn btn-danger text-warning">
-    Свободных запесей нет! 
-      </span></td> 
+       Свободных запесей нет! 
+    </span></td> 
   <% elsif  doctor_signed_in? && current_doctor %>
     <td> <span class="btn btn-success">
     <%= link_to "Есть свободные записи!", class: "text-dark"  %>
       </span></td> 
-  <% end %>
+   <% end %>
 </div>
 
 <% if @doctor.appointments.count > 0 %>
@@ -63,5 +61,5 @@
             <%= render 'appointments/appointment' %>
         </div>
     <% end %>
- <% end %>
+<% end %>
 

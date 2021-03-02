@@ -1,8 +1,7 @@
 class DoctorsController < ApplicationController
-    before_action :set_doctor, only: [:show, :edit, :update, :destroy]
+    
+  before_action :set_doctor, only: [:show, :edit, :update, :destroy]
    
-   
-  
     def show
       @appointments = @doctor.appointments
       @categories = @doctor.categories.paginate(page: params[:page], per_page: 5)

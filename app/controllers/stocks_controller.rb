@@ -1,12 +1,10 @@
 class StocksController < ApplicationController
-    
-
-    
+        
     before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
     def search
         if params[:stock].present?
-           @stock = Stock.find_by(namedoctor: params[:stock].capitalize)
+             @stock = Stock.find_by(namedoctor: params[:stock].capitalize)
             if @stock
                 respond_to do |format|
                     format.js { render partial: 'users/result' }
@@ -16,7 +14,7 @@ class StocksController < ApplicationController
                     flash.now[:alert] = "Please enter a valid name"
                     format.js { render partial: 'users/result' }
                 end
-             end
+            end
         else
             respond_to do |format|
                 flash.now[:alert] = "Please enter a name "
@@ -24,52 +22,47 @@ class StocksController < ApplicationController
             end
         end
     end
-    def new        
+    
+      def new        
         @stock = Stock.new(stock_params)
       end
     
-      def create
-      
+      def create    
         @stock = Stock.new(stock_param)
         @stock.save
         @appointment = Appointment.find(@stock.appointment_id)           
         @appointment.stock_id = @stock.id  
         @appointment.save
-
         if @stock.save 
           flash[:notice] = "Рекомендация создана, выпишите пациенту рецепт!"
           render 'edit' 
         else
           render 'new'
-        end
-  
+        end 
       end
     
-      def edit
-        
+      def edit       
       end
     
       def update  
         if @stock.update(stock_params) 
                 flash[:notice] = "Запись сохранена!"  
-                redirect_to current_doctor 
+                @appointment = Appointment.find(@stock.appointment_id)
+                redirect_to @appointment
         else
-         render 'edit' 
+            render 'edit' 
         end
       end 
     
-      def index
-      
+      def index    
         @stocks = Stock.paginate(page: params[:page], per_page: 5)
       end
     
-      def show
-        
+      def show        
       end
       
       def destroy
-        @stock.destroy
-        
+        @stock.destroy        
         flash[:notice] = "Запись удалена!"
         redirect_to stocks_path
       end
@@ -83,10 +76,8 @@ class StocksController < ApplicationController
       def stock_params 
         params.require(:stock).permit(:user_id, :doctor_id, :appointment_id, :content, :namedoctor, :id, :picture )
       end
+
       def stock_param 
         params.permit(:user_id, :doctor_id, :appointment_id, :content, :namedoctor, :id, :picture )
       end
-    
-   
-
 end
