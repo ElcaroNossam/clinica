@@ -1,23 +1,20 @@
 class AppointmentsController < ApplicationController
    
-  
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action  :appointment_params, only: [:create, :update]
 
     def new    
       @appointment = Appointment.new
-      
-      
     end
   
     def create
-      @appointment = Appointment.new(appointment_params)
-      @appointment.user_id = current_user.id
-      @appointment.doctor_id = session[:appointment_doctor_id]
-      
+        @appointment = Appointment.new(appointment_params)
+        @appointment.user_id = current_user.id
+        @appointment.doctor = Doctor.find(session[:appointment_doctor_id])     
       if @appointment.save 
-        flash[:notice] = "Запись создана, но вам нужно выбрать имя вашего доктора!"
-       render 'edit'
+        flash[:notice] = "Запись создана!"
+        @doctor = @appointment.doctor
+        redirect_to @doctor
       else
         render 'new'
       end
@@ -30,15 +27,10 @@ class AppointmentsController < ApplicationController
     def update
       if @appointment.update(appointment_params)
         flash[:notice] = "Запись создана!"
-       if @appointment.doctors.count > 1 
-          redirect_to doctors_path
-       else
-          @appointment.doctors.each do |doctor|
-          redirect_to doctor
-         end 
-        end
+        @doctor = @appointment.doctor
+        redirect_to @doctor       
        end
-      end
+    end
   
     def index
       @appointments = Appointment.paginate(page: params[:page], per_page: 5)
@@ -52,14 +44,12 @@ class AppointmentsController < ApplicationController
      end
     end
     
-    def destroy
-      
-      @appointment.destroy
-      
-      flash[:notice] = "Запись успешно удалена!"
+    def destroy  
+        @appointment.destroy
+        flash[:notice] = "Запись успешно удалена!"
       if @appointment.doctors.count == 1
         @appointment.doctors.each do |doctor|
-        redirect_to doctor
+          redirect_to doctor
         end
       else
         redirect_to doctors_path
@@ -68,8 +58,7 @@ class AppointmentsController < ApplicationController
 
     private
   
-    def set_appointment
-      
+    def set_appointment     
       @appointment = Appointment.find(params[:id])
     end
 

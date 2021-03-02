@@ -1,15 +1,15 @@
 <div class="row justify-content-center" >
    <div class="row col-10">
     <table class="table table-border table-hover mt-4">
-      <thead class="thead-dark">
-       <tr>
-            <th scope="col">Номер записи</th>
-            <th scope="col">Дата</th>
-            <th scope="col">Причина</th>
-            <th scope="col">Пациент</th>
-            <th scope="col">Phisician</th>
-            <th scope="col">Recomendation</th>
-       </tr>
+       <thead class="thead-dark">
+          <tr>
+               <th scope="col">Номер записи</th>
+               <th scope="col">Дата</th>
+               <th scope="col">Причина</th>
+               <th scope="col">Пациент</th>
+               <th scope="col">Phisician</th>
+               <th scope="col">Recomendation</th>
+          </tr>
        </thead>
       <tbody>
       <% @appointments.each do |appointment| %>
@@ -23,14 +23,13 @@
                     <%= link_to doctor.name, doctor_path(doctor), class: "badge badge-pill badge-info mr-1" %>
                   <% end %></td>
                
-               
                  <% if doctor_signed_in? && current_doctor && !current_doctor.stock_already_tracked?(appointment.id) %>
                      <td><%= link_to 'Create recomendation',new_stock_path(user_id: appointment.user_id, appointment_id: appointment.id, doctor_id: current_doctor.id, namedoctor: current_doctor.name), class: "btn btn-primary", method: :post%></td>  
                  <% elsif doctor_signed_in? && current_doctor && appointment.stock_id = !nil  %> 
                       <td> <span class="btn btn-danger">                   
                          <%= link_to 'Closed', appointment_path(appointment), class: "btn btn-danger" %>
                       </span></td>                     
-                   <% end %>               
+                  <% end %>               
               <% if user_signed_in? && appointment.stock_id == nil %>
                    <td>  <%= link_to 'Open', appointment_path(appointment),  class: "btn btn-success" %>  </td> 
               <% end %>
@@ -40,8 +39,7 @@
             </tr>
           <% end %>
     </tbody>
-   </table>
-   
+   </table>  
  </div>
 </div>
       

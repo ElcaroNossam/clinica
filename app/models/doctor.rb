@@ -1,6 +1,7 @@
 class Doctor < ApplicationRecord
    
     has_many :stocks
+    has_many :appointments
 
     has_many :doctor_categories
     has_many :categories, through: :doctor_categories
