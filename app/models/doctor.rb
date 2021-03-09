@@ -31,7 +31,6 @@ class Doctor < ApplicationRecord
 
     def recomend?
      appointments.where(stock_id: nil) 
-
     end
 
     def can_track_stock?(app)

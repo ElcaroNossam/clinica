@@ -49,8 +49,8 @@ class StocksController < ApplicationController
           @appointment = Appointment.find(@stock.appointment_id)           
           @appointment.stock_id = @stock.id
           @appointment.save
-                flash[:notice] = "Запись сохранена!"                 
-                redirect_to @appointment
+          flash[:notice] = "Запись сохранена!"                 
+          redirect_to @appointment
         else
             render 'edit' 
         end

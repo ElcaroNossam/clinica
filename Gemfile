@@ -52,7 +52,7 @@ group :development, :test do
   gem "factory_bot"
   gem 'guard'
   gem 'minitest-reporters'
-
+  gem 'rubocop', '~> 1.11', require: false
 end
 
 group :development do

@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :edit, :update, :destroy]
    
     def show
+      session[:appointment_doctor_id] = params[:id]
       @appointments = @doctor.appointments
       @categories = @doctor.categories.paginate(page: params[:page], per_page: 5)
     end
