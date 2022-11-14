@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
  gem 'devise'
  gem 'faker'
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'coffee-rails'
@@ -45,7 +45,7 @@ gem 'bootsnap', '~> 1' , require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.1'
   gem 'guard-rspec', require: false
