@@ -2,11 +2,13 @@
   "name": "devise",
   "private": true,
   "dependencies": {
+    "20": "^3.1.9",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.4.3",
     "bootstrap": "4.5",
+    "heroku": "^7.66.3",
     "jquery": "^3.5.1",
     "jquery-ujs": "^1.2.2",
     "popper.js": "^1.16.1",
